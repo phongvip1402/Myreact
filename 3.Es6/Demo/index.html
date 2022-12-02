@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- dùng 1 vòng for để tìm ra giá trị lớn thứ 2 trong mảng và đếm số lần suất hiện giá trị lớn thứ 2 đó
+    arr =[2,4,6,6,4,3,2,7,8,7,7] -->
+    <script>
+        const arr = [2, 4, 6, 6, 4, 8, 3, 2, 7, 8, 7, 7, 8, 10];
+
+        const findSecond = (arr) => {
+            let first = arr[0];
+            let second = arr[1];
+            let count = 0;
+            if (first < second) {
+                first = arr[1];
+                second = arr[0];
+            }
+            for (let i = 2; i < arr.length; i++) {
+                if (arr[i] > first) {
+                    second = first;
+                    first = arr[i];
+                }
+            }
+            for (let i = 0; i < arr.length; i++) {
+            if (arr[i] === second) {
+                count += 1;
+            }
+        }
+        console.log(`second = ${second}`)
+        console.log(`Count = ${count}`);
+        }
+        useEffect=
+
+      findSecond(arr);
+    </script>
+</body>
+
+</html>
