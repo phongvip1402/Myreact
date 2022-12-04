@@ -1,5 +1,6 @@
 import './App.css';
 import ListUser from './component/ListUser';
+import LoadingByAxios from './component/LoadingByAxios';
 import RouterEdit from './page/RouterEdit';
 
 
@@ -10,9 +11,10 @@ function App() {
     <ListUser/>
     <br />
     <br />
-    <br />
-    <br />
     <RouterEdit/>
+    <br />
+    <br />
+    <LoadingByAxios/>
     </div>
   );
 }
