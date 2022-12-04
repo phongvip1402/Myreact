@@ -6,7 +6,7 @@ export default function GetUserByAxios() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/users")
+      .get("http://localhost:3001/user")
       .then((res) => {
        setUsers({ users: res.data });
       })

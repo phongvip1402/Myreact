@@ -6,7 +6,7 @@ function ListUser() {
    
 useEffect( () => {
     axios
-      .get("http://localhost:3000/user")
+      .get("http://localhost:3001/user")
       .then(res => {
         setUser(res.data);
         // this.setState({ users: res.data });
