@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-function LoadingByAxios() {
+function LoadingAsynAwait() {
   const [users, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -19,25 +19,17 @@ function LoadingByAxios() {
       });
   }, []);
 
-  const getUsers = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        axios
-          .get("http://localhost:3001/user")
-          .then((res) => {
-            resolve(res);
-          })
-          .catch((err) => {
-            reject(err);
-          });
-      }, 3000);
+  const  getUsers = async () => {
+    await new Promise(resolve => {
+      setTimeout(resolve, 3000);
     });
+    return await axios.get("http://localhost:3001/user");
   };
 
   if (loading) return <p>loading...</p>;
   return (
     <div>
-      <h1>Users promise</h1>
+      <h1>Users Asyn Await</h1>
       {console.log(users)}
       <ul>
         {users.map((user) => (
@@ -48,4 +40,4 @@ function LoadingByAxios() {
   );
 }
 
-export default LoadingByAxios;
+export default LoadingAsynAwait;

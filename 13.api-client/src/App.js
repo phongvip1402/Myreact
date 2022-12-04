@@ -1,5 +1,6 @@
 import './App.css';
 import ListUser from './component/ListUser';
+import LoadingAsynAwait from './component/LoadingAsynAwait';
 import LoadingByAxios from './component/LoadingByAxios';
 import RouterEdit from './page/RouterEdit';
 
@@ -15,6 +16,9 @@ function App() {
     <br />
     <br />
     <LoadingByAxios/>
+    <br />
+    <br />
+    <LoadingAsynAwait/>
     </div>
   );
 }
