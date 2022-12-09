@@ -1,92 +1,75 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { fakeLogin } from "../redux/action";
 import "../style/login.css";
-import {
-  MDBContainer,
-  MDBInput,
-  MDBCheckbox,
-  MDBBtn,
-  MDBIcon,
-} from "mdb-react-ui-kit";
-import Signup from "./Signup";
-import { useState } from "react";
+import { MDBContainer } from "mdb-react-ui-kit";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+
 function Login() {
-  const [form, setForm] = useState({});
-  const[account,setAccount] = useState({})
-  // const navigate = useNavigate();
+  const navigate = useNavigate(); // khai báo navigate
+  const dispatch = useDispatch(); // khai báo dispatch
+  const [user, setUser] = useState({ email: "", password: "" });
+  const userlogined = useSelector((state) => state.userlogined); //  lấy giá trị state (userlogined)
+  const setValueForUser = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  };
   const validate = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string().min(6).required("Required"),
   });
-  const resetForm = () => {
-    setForm({
-      email: "",
-      password: "",
-    });
+
+  const login = () => {
+    dispatch(fakeLogin(user));
   };
 
   useEffect(() => {
-    axios
-    .get(`http://localhost:3000/user`)
-    .then((response) => {
-      console.log(response);
-      setAccount(response.data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  },[])
+    if (userlogined.email) {
+      navigate("/admin");
+    }
+  }, [userlogined, navigate]);
 
-  let handleSubmit = (e) => {
-    
-  };
-
-  
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
   return (
     <Formik
-      initialValues={form}
+      initialValues={user}
       validationSchema={validate}
       enableReinitialize={true}
-      onSubmit={handleSubmit}
+      onSubmit={login}
     >
       <Form>
         <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
           <h1 className="text-center mb-5">Login</h1>
-
           <Field
             className="input-control"
             name="email"
             placeholder="Enter a email"
-            value={form.email || ""}
-            onChange={handleChange}
+            value={user.email || ""}
+            onChange={setValueForUser}
           />
           <ErrorMessage component="div" className="text-danger" name="email" />
           <br />
 
           <Field
             className="input-control"
-            name="title"
+            name="password"
             placeholder="Enter a title"
-            value={form.title || ""}
+            value={user.password || ""}
             type="password"
-            onChange={handleChange}
+            onChange={setValueForUser}
           />
-          <ErrorMessage component="div" className="text-danger" name="title" />
+          <ErrorMessage component="div" className="text-danger" name="password" />
           <br />
 
-          <buton
+          <button
             className="mb-4 text-center btn btn-primary"
-            onClick={handleSubmit}
+            onClick={login}
             type="submit"
           >
             Sign in
-          </buton>
+          </button>
 
           <div className="text-center">
             <p>
@@ -98,5 +81,4 @@ function Login() {
     </Formik>
   );
 }
-
 export default Login;

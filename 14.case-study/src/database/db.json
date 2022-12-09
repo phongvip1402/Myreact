@@ -1,0 +1,50 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Nguyễn",
+      "email": "john@gmail.com",
+      "password": "12345678",
+      "role": "administrator"
+    },
+    {
+      "id": 2,
+      "firstName": "Alex",
+      "lastName": "Phạm",
+      "email": "alex@gmail.com",
+      "password": "12345678",
+      "role": "user"
+    },
+    {
+      "id": 3,
+      "firstName": "Syndra",
+      "lastName": "Ngô",
+      "email": "hoangtu9x1402@gmail.com",
+      "password": "12345678",
+      "role": "user"
+    }
+  ],
+  "category": [
+    {
+      "id": 1,
+      "name": "Iphone"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "catagory": "phone",
+      "name": "Iphone6",
+      "quantity": 10,
+      "price": 3000
+    },
+    {
+      "id": 2,
+      "catagory": "phone",
+      "name": "Iphone 14 pro ",
+      "quantity": 10,
+      "price": 3500
+    }
+  ]
+}
